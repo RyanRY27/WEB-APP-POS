@@ -1,5 +1,9 @@
 <?php
 
+
+session_start();
+define("ABSPATH", true);
+
 require "../app/core/init.php";
 
 $controller = $_GET['page'] ?? "home";

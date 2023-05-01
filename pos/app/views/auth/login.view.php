@@ -1,6 +1,6 @@
 <?php require viewpath('partials/head');?>
 
-<div class="container-fluid border col-lg-4 col-md-5 mt-5 p-4 shadow">
+<div class="container-fluid border col-lg-4 col-md-5 mt-5 mb-3 p-4 shadow">
 
         <form method="post">
             <center>
@@ -11,12 +11,18 @@
             <br>
 
             <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <input name="email" type="email" class="form-control <?=!empty($errors['email']) ? 'border-danger':''?>" id="floatingInput" placeholder="name@example.com">
                 <label for="floatingInput">Email address</label>
+                <?php if(!empty($errors['email'])):?>
+                    <small class="text-danger"><?=$errors['email']?></small>
+                <?php endif;?>
             </div>
             <div class="form-floating">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <input name="password" type="password" class="form-control <?=!empty($errors['password']) ? 'border-danger':''?>" id="floatingPassword" placeholder="password">
                 <label for="floatingPassword">Password</label>
+                <?php if(!empty($errors['password'])):?>
+                    <small class="text-danger"><?=$errors['password']?></small>
+                <?php endif;?>
             </div> 
             <div class="col-auto">
                 <div class="mt-2 form-check">

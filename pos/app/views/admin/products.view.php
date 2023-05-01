@@ -1,11 +1,13 @@
-<?php require viewpath('partials/head');?>
-
-    <div class="coantainer-fluid border rounded p-4 m-5 col-lg-4 mx-auto">
-        <form method="post" enctype="multipart/form-data">
-
-            
-            <h5 class="text-dark"><i class="fa-solid fa-burger"></i> Add Product</h5>
-            <div class="form-floating mt-4 mb-3">
+<!-- Modal -->
+<div class="modal fade" id="newproduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="fa-solid fa-burger me-1"></i>ADD PRODUCT</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-floating mt-4 mb-3">
                 <input name="description" type="text" class="form-control <?=!empty($errors['description']) ? 'border-danger':''?>" id="productfloatingInput" placeholder="Product Name">
                 <label for="productfloatingInput" class="form-label">Product Name</label>
                 <?php if(!empty($errors['description'])):?>
@@ -50,13 +52,55 @@
                     <small class="text-danger"><?=$errors['image']?></small>
                 <?php endif;?>
             </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div><div class="table-responsive">
+	
+	<table class="table table-striped table-hover">
+		<tr>
+			<th>Barcode</th><th>Product</th><th>Qty</th><th>Price</th><th>Image</th><th>Date</th>
+			<th>
+				<button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#newproduct">
+				  <i class="fa-solid fa-plus me-1"></i>Add Product
+				</button>
+			</th>
+		</tr>
 
-         <br>
-            <button class="btn btn-primary float-end"><i class="fa-regular fa-floppy-disk"></i> Save</button>
-            <a href="index.php?page=admin&tab=products">
-            <button type="button"class="btn btn-danger"><i class="fa-solid fa-xmark"></i> Cancel</button>
-            </a>
-        </form> 
+		<?php if (!empty($products)):?>
+			<?php foreach ($products as $product):?>
+	 		<tr>
+				<td><?=esc($product['barcode'])?></td>
+				<td>
+					<a href="index.php?page=product-single&id=<?=$product['id']?>">
+						<?=esc($product['description'])?>
+					</a>	
+				</td>
+				<td><?=esc($product['qty'])?></td>
+				<td><?=esc($product['amount'])?></td>
+				<td>
+					<img src="<?=crop($product['image'])?>" style="width: 100%;max-width:100px;" >
+				</td>
+				<td><?=esc($product['date'])?></td>
+				<td>
+					<a href="index.php?page=product-edit&id=<?=$product['id']?>">
+						<button class="btn btn-outline-primary btn-sm"><i class="fa-solid fa-pen-to-square me-1"></i>Edit</button></a>
+					<a href="index.php?page=product-delete&id=<?=$product['id']?>">
+						<button class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-trash me-1"></i>Delete</button></a>
+				</td>
+			</tr>
+			<?php endforeach;?>
+		<?php endif;?>
+		
+	</table>
+	<!--modals-->
+
+
+
+	<!--endmodals-->
 </div>
-    
-<?php require viewpath('partials/foot');?>
+
