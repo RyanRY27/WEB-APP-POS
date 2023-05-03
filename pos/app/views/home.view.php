@@ -1,6 +1,5 @@
 <?php require viewpath('partials/head');?>
-
-    <style>
+  <style>
         
         .hide{
             display: none;
@@ -10,9 +9,13 @@
 
             0%{opacity: 0;transform: translateY(-100px);}
             100%{opacity: 1;transform: translateY(0px);}
+
+
         }
 
     </style>
+
+
     <div class="container fluid p-1">
         <center><h2></i>My POS</h2></center>
     </div>
@@ -43,7 +46,7 @@
             <div class="table-responsive" style="block-size:500px">
                 <table class="table table-striped table-hover">
                     <tr>
-                        <th>Item</th><th>Description</th><th>Amount</th>
+                        <th>Image</th><th>Description</th><th>Amount</th>
                     </tr>
                     <tbody class="js-items">
                   
@@ -51,40 +54,73 @@
                     </tbody>
                 </table>
             </div>  
-            <div class="js-gtotal alert alert-danger mt-4" style="font-size:20px">Total: ₱0.00</div>
+            <div class="js-gtotal alert alert-danger mt-4" style="font-size:20px">Total: ₱ 0.00</div>
             <div class="d-flex">
                 <button onclick="clear_all()" class="col ms-2 me-2 mt-2 py-2 btn btn-danger">Cancel</button>
-                <button onclick="show_modal('amount-paid')" class="col ms-2 me-2 mt-2 py-2 btn btn-primary">Proceed</button>
+                <button onclick="show_modal('amount-paid')" class="col ms-2 me-2 mt-2 py-2 btn btn-primary">Check Out</button>
             </div>
         </div>
     </div>
 
-<!--modal-->
-   <!--enter amount modal-->
-    <div role="close-button" onclick="hide_modal(event,'amount-paid')" class="js-amount-paid-modal hide" style="animation: appear .5s ease;background-color: #000000bb; width: 100%;height: 100%;position: fixed;left:0px;top:0px;z-index: 4;">
 
-        <div style="width:500px;min-height:200px;background-color:white;padding:10px;margin:auto;margin-top:100px">
-            <h4>Checkout <button role="close-button" onclick="hide_modal(event,'amount-paid')" class="btn btn-danger float-end p-0 px-2">X</button></h4>
-            <br>
-            <div class="js-gtotal mt-4" style="font-size:20px">Total: ₱0.00</div>
-            <br>
-            <input onkeyup="if(event.keyCode == 13)validate_amount_paid(event)" type="text" class="js-amount-paid-input form-control" placeholder="Enter amount paid">
-            <br>
-            <button role="close-button" onclick="hide_modal(event,'amount-paid')" class="btn btn-secondary">Cancel</button>
-            <button onclick="validate_amount_paid(event)" class="btn btn-primary float-end">Next</button>
-        </div>
+
+<!--modals-->
+
+<!--amount modals-->
+
+    <div role="close-button" onclick="hide_modal(event, 'amount-paid')" class="js-amount-paid-modal hide" style="animation: appear .4s ease;background-color: #00000044; width: 100%; height: 100%; position: fixed;left:0px;top:0px;z-index: 4;">
+            
+            <div style="width:500px;min-height: 350px;background-color: whitesmoke;padding: 10px;margin: auto;margin-top: 150px;box-shadow: 5px 10px #00000022;">
+               
+                <h4><i class="fa fa-cart-shopping"></i>Check Out <button role="close-button" onclick="hide_modal(event,'amount-paid')" type="button" class="btn-close float-end"></button></h4>
+                <br>
+                <div class="js-gtotal-modal alert alert-danger mt-4 " role="alert" style="font-size:20px"></div>
+                <label for="amountpaid" class="form-label" style="font-size:20px;">Amount Paid:</label>
+                <input onkeyup="if(event.keyCode == 13)validate_amount_paid(event)" type="text" class="js-amount-paid-input form-control" placeholder="Enter Amount Paid">
+                <br><br>
+                <button onclick="validate_amount_paid(event)" class="btn btn-outline-primary float-end my-auto mb-4 ms-3">Pay</button>
+                <button role="close-button" onclick="hide_modal(event,'amount-paid')" class="btn btn-outline-danger float-end ms-3">Cancel</button>
+            
+                <br>
+            </div>
+        
     </div>
-    <!--end enter amount modal-->
 
-<!--endmodal-->
+<!--end amoount modals-->
+<!--change modals-->
+
+    <div role="close-button" onclick="hide_modal(event, 'change')" class="js-change-modal hide" style="animation: appear .4s ease;background-color: #00000044; width: 100%; height: 100%; position: fixed;left:0px;top:0px;z-index: 4;">
+       
+            <div style="width:500px;min-height: 350px;background-color: whitesmoke;padding: 10px;margin: auto;margin-top: 150px;box-shadow: 5px 10px #00000022;">
+                <div class="modal-header">
+                <h4>Receipt:</h4><button role="close-button" onclick="hide_modal(event,'change')" class="btn-close float-end"></button>
+            </div>
+                
+                <div class="js-gtotal-change mt-4 mx-auto" role="alert" style="font-size: 25px"></div>
+                <div class="js-amount-paid-input mt-4 mx-auto" role="alert"style="font-size: 25px;"></div>
+                <div class="js-change-input mt-4 mx-auto" role="alert"style="font-size: 25px;"></div>
+                <br>
+                <div class="modal-footer">
+                <button role="close-button" onclick="hide_modal(event,'change')" class="js-btn-close-change btn-success float-end">Continue</button>
+            </div>
+        </div>
+        
+    </div>
+
+<!--end change modals-->
 
 
+<!--end modals-->
 
+  
 <script>
 
     var PRODUCTS = [];
     var ITEMS    = [];
     var BARCODE  = false;
+    var GTOTAL   = 0;
+    var CHANGE   = 0;
+    var AMOUNT   = 0;
 
     var main_input = document.querySelector(".js-search");
 
@@ -110,11 +146,6 @@
         ajax.addEventListener('readystatechange',function(e){
 
             if(ajax.readyState == 4){
-
-                var mydiv = document.querySelector(".js-products");
-                mydiv.innerHTML = "";
-                PRODUCTS = [];
-
 
                if(ajax.status == 200)
                 {
@@ -152,10 +183,12 @@
 
             if(obj.data_type == "search")
             {
+                var mydiv = document.querySelector(".js-products");
+                mydiv.innerHTML = "";
+                PRODUCTS = [];
 
-
-            var mydiv = document.querySelector(".js-products");
-            if(obj.data != "")
+                var mydiv = document.querySelector(".js-products");
+                if(obj.data != "")
             {
                 PRODUCTS = obj.data;
                 for (var i = 0; i < obj.data.length; i++) {
@@ -186,7 +219,7 @@
                 </div>
             </div>
             <!--end card-->
-            `;
+            `;  
 
                 
     }
@@ -206,7 +239,7 @@
                         </div>
                <td style="font-size:20px">
                     <b>₱${data.amount}</b>
-                    <button onclick="clear_item(${index})" class="float-end btn btn-outline-danger btn-sm"><i class="fa fa-times"></i></button>
+                    <button onclick="clear_item(${index})" class="float-end btn btn-danger btn-sm"><i class="fa fa-times"></i></button>
                 </td>
                 </tr>          
             <!--end item-->
@@ -264,9 +297,12 @@
             grand_total += (ITEMS[i].qty * ITEMS[i].amount);
         }
         
+        var gtotal_div = document.querySelector(".js-gtotal-modal");
+        gtotal_div.innerHTML = "Total: ₱" + grand_total.toFixed(2);  
         var gtotal_div = document.querySelector(".js-gtotal");
-        gtotal_div.innerHTML = "Total: ₱" + grand_total;
-    }
+        gtotal_div.innerHTML = "Total: ₱" + grand_total.toFixed(2);
+        GTOTAL = grand_total;
+    } 
 
     function clear_all()
     {
@@ -325,110 +361,95 @@
         }
     }
 
-function show_modal(modal)
+    function show_modal(modal)
     {
-            
-        if(modal == "amount-paid"){
 
-            if(ITEMS.length == 0){
+        if(modal == "amount-paid") {
 
-                alert("Please add at least one item to the cart");
+            if (ITEMS.length == 0) {
+                alert("Please add at least one item on the cart!");
                 return;
             }
-            
+
             var mydiv = document.querySelector(".js-amount-paid-modal");
             mydiv.classList.remove("hide");
 
-            
-            mydiv.querySelector(".js-amount-paid-input").value = "";
+            mydiv.querySelector(".js-amount-paid-input").value == "";
             mydiv.querySelector(".js-amount-paid-input").focus();
-            var gtotal_div = document.querySelector(".js-gtotal");
-            gtotal_div.innerHTML = "Total: ₱" + grand_total;
-      
+        }
+        else
+        
+        if(modal == "change") {
 
-        }else
-        if(modal == "change"){
- 
             var mydiv = document.querySelector(".js-change-modal");
             mydiv.classList.remove("hide");
 
             mydiv.querySelector(".js-change-input").innerHTML = CHANGE;
+            mydiv.querySelector(".js-amount-paid-input").innerHTML = AMOUNT;
+            mydiv.querySelector(".js-gtotal-change").innerHTML = GTOTAL;
             mydiv.querySelector(".js-btn-close-change").focus();
-        }
+        } 
+       
         
-
-    }
+    }    
 
     function hide_modal(e,modal)
     {
-        
-        if(e == true || e.target.getAttribute("role") == "close-button")
+        if(e == true || e.target.getAttribute("role") == "close-button") 
         {
-            if(modal == "amount-paid"){
+            if(modal == "amount-paid") 
+            {
                 var mydiv = document.querySelector(".js-amount-paid-modal");
                 mydiv.classList.add("hide");
             }else 
-            if(modal == "change"){
+            if(modal == "change") 
+            {
                 var mydiv = document.querySelector(".js-change-modal");
                 mydiv.classList.add("hide");
-            }           
-                    
+            }
         }
-    
     }
+
     function validate_amount_paid(e)
     {
 
         var amount = e.currentTarget.parentNode.querySelector(".js-amount-paid-input").value.trim();
         
         if(amount == "")
-        {
-            alert("Please enter a valid amount");
+        {   
+            alert("Please enter a valid amount!");
             document.querySelector(".js-amount-paid-input").focus();
             return;
         }
-
         amount = parseFloat(amount);
-        if(amount < GTOTAL){
+        AMOUNT = amount;
+        AMOUNT = "Amount paid: ₱ " + AMOUNT.toFixed(2);
 
-            alert("Amount must be higher or equal to the total");
+
+        if(amount < GTOTAL)
+        {
+
+            alert("Amount must be higher or equal to the total!");
             return;
         }
 
-        CHANGE = amount - GTOTAL ;
-        CHANGE = CHANGE.toFixed(2);
+        CHANGE = amount - GTOTAL;
+        CHANGE = "Change: ₱ " + CHANGE.toFixed(2);
+        GTOTAL = "Total: ₱" + GTOTAL.toFixed(2);
 
         hide_modal(true,'amount-paid');
         show_modal('change');
 
-        //remove unwanted information
-        var ITEMS_NEW = [];
-        for (var i = 0; i < ITEMS.length; i++) {
-            
-            var tmp = {};
-            tmp.id = ITEMS[i]['id'];
-            tmp.qty = ITEMS[i]['qty'];
-
-            ITEMS_NEW.push(tmp);
-        }
-
-        //send cart data through ajax
+        //send cart through ajax
         send_data({
 
             data_type:"checkout",
-            text:ITEMS_NEW
+            text:ITEMS
         });
 
         //clear items
         ITEMS = [];
         refresh_items_display();
-
-        //reload products
-        send_data({
-
-            data_type:"search",
-            text:""
-        });
     }
 
     send_data({
@@ -436,12 +457,7 @@ function show_modal(modal)
         data_type:"search",
         text:""
     });
-    send_data({
-
-        data_type:"search",
-        text:""
-    });
-
+ 
 
 </script>
 

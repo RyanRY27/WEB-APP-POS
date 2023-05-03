@@ -47,7 +47,6 @@
                 <?php endif;?>
                 
 
-                <br>
             <div class="mb-3">
                 <label for="formFile" class="form-label">Product Image</label>
                 <input name="image" class="form-control <?=!empty($errors['image']) ? 'border-danger':''?>" type="file" id="formFile">
@@ -55,7 +54,7 @@
                     <small class="text-danger"><?=$errors['image']?></small>
                 <?php endif;?>
             </div>
-            <br>
+      
                 <img class="mx-auto d-block" src="<?=$row['image']?>" style="width: 80%;">
             <br>   
             <button class="btn btn-primary float-end"><i class="fa-regular fa-floppy-disk"></i> Save</button>
@@ -65,7 +64,7 @@
         </form> 
         <?php else:?>
             Product not found!
-            <br><br>
+            
 
                     <a href="index.php?page=admin&tab=products">
                     <button type="button"class="btn btn-danger"><i class="fa-solid fa-xmark"></i> Cancel</button>
