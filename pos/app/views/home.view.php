@@ -70,10 +70,11 @@
 
     <div role="close-button" onclick="hide_modal(event, 'amount-paid')" class="js-amount-paid-modal hide" style="animation: appear .4s ease;background-color: #00000044; width: 100%; height: 100%; position: fixed;left:0px;top:0px;z-index: 4;">
             
-            <div style="width:500px;min-height: 350px;background-color: whitesmoke;padding: 10px;margin: auto;margin-top: 150px;box-shadow: 5px 10px #00000022;">
-               
-                <h4><i class="fa fa-cart-shopping"></i>Check Out <button role="close-button" onclick="hide_modal(event,'amount-paid')" type="button" class="btn-close float-end"></button></h4>
-                <br>
+            <div style="width:500px;min-height: 370px;background-color: whitesmoke;padding: 10px;margin: auto;margin-top: 150px;box-shadow: 5px 10px #00000022;">
+               <div class="modal-header">
+                <h4><i class="fa fa-cart-shopping"></i>Check Out</h4><button role="close-button" onclick="hide_modal(event,'amount-paid')" type="button" class="btn-close float-end"></button>
+            </div>
+                
                 <div class="js-gtotal-modal alert alert-danger mt-4 " role="alert" style="font-size:20px"></div>
                 <label for="amountpaid" class="form-label" style="font-size:20px;">Amount Paid:</label>
                 <input onkeyup="if(event.keyCode == 13)validate_amount_paid(event)" type="text" class="js-amount-paid-input form-control" placeholder="Enter Amount Paid">
@@ -93,15 +94,15 @@
        
             <div style="width:500px;min-height: 350px;background-color: whitesmoke;padding: 10px;margin: auto;margin-top: 150px;box-shadow: 5px 10px #00000022;">
                 <div class="modal-header">
-                <h4>Receipt:</h4><button role="close-button" onclick="hide_modal(event,'change')" class="btn-close float-end"></button>
+                <h3>Receipt:</h3><button role="close-button" onclick="hide_modal(event,'change')" class="btn-close float-end"></button>
             </div>
                 
-                <div class="js-gtotal-change mt-4 mx-auto" role="alert" style="font-size: 25px"></div>
-                <div class="js-amount-paid-input mt-4 mx-auto" role="alert"style="font-size: 25px;"></div>
-                <div class="js-change-input mt-4 mx-auto" role="alert"style="font-size: 25px;"></div>
+                <div class="js-gtotal-change ms-4 mt-4" role="alert" style="font-size: 25px"></div>
+                <div class="js-amount-paid-input ms-4 mt-4" role="alert"style="font-size: 25px;"></div>
+                <div class="js-change-input ms-4 mt-4" role="alert"style="font-size: 25px;"></div>
                 <br>
                 <div class="modal-footer">
-                <button role="close-button" onclick="hide_modal(event,'change')" class="js-btn-close-change btn-success float-end">Continue</button>
+                <button role="close-button" onclick="hide_modal(event,'change')" class="js-btn-close-change btn-primary float-end">Continue</button>
             </div>
         </div>
         
@@ -423,7 +424,7 @@
         }
         amount = parseFloat(amount);
         AMOUNT = amount;
-        AMOUNT = "Amount paid: ₱ " + AMOUNT.toFixed(2);
+        AMOUNT = "Cash: ₱ " + AMOUNT.toFixed(2);
 
 
         if(amount < GTOTAL)
@@ -440,11 +441,24 @@
         hide_modal(true,'amount-paid');
         show_modal('change');
 
+        //renove info
+        var ITEMS_NEW = [];
+        for (var i = 0; i < ITEMS.length; i++) {
+            
+            var tmp ={};
+            tmp.id = ITEMS[i]['id'];
+            tmp.qty = ITEMS[i]['qty'];
+            tmp.description = ITEMS[i]['description'];
+
+            ITEMS_NEW.push(tmp);
+           
+        }
+
         //send cart through ajax
         send_data({
 
             data_type:"checkout",
-            text:ITEMS
+            text:ITEMS_NEW
         });
 
         //clear items

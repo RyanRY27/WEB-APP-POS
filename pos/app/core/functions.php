@@ -145,3 +145,21 @@ function crop($filename,$size = 400)
 
 
 
+function get_receipt_no()
+{
+
+    $num = 1;
+
+    $db = new Database();;
+    $rows = $db->query("select receipt_no from sales order by id desc limit 1");
+
+    if(is_array($rows))
+    {
+
+        $num = (int)$rows[0]['receipt_no'] + 1;
+
+    }
+
+    return $num;
+
+}
