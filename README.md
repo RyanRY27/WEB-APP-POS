@@ -1,3 +1,5 @@
-# pos
+POS PROJECT
 
-di ko na alam legit
+POS development for a school project.
+
+
