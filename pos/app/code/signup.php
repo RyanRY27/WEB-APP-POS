@@ -19,5 +19,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST")
 	}
 	
 }
+if(Auth::access('owner')){
+	require viewpath('auth/signup');
+}
+else{
 
-require viewpath('auth/signup');
+	Auth::set_message("Only Admin can Create Users!!");
+	require viewpath('auth/security');
+}

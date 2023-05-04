@@ -4,7 +4,7 @@
 
         <form method="post">
             <center>
-                <h3><i class="fa fa-user-alt"></i> Sign Up</h3>
+                <h3><i class="fa fa-user-plus"></i> Create User</h3>
                 <div><?=esc(APP_NAME)?></div>
             </center>
             <br>

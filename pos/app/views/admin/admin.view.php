@@ -22,6 +22,14 @@
 				case 'products':
 					require viewpath('admin/products');
 					break;
+
+				case 'users':
+					require viewpath('admin/users');
+					break;
+
+				case 'sales':
+					require viewpath('admin/sales');
+					break;
 				
 				default:
 					// code...

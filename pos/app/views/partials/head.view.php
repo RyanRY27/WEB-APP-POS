@@ -14,7 +14,6 @@
 <body>
     <?php 
         $no_nav[] = "login";
-        $no_nav[] = "signup";
         $no_nav[] = "product-add";
         $no_nav[] = "product-edit";
        
