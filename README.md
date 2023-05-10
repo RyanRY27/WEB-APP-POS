@@ -2,7 +2,7 @@ POS PROJECT
 
 POS development for a school project.
 
-
+---------------------------------------------
 
 
 Installation guide
@@ -27,6 +27,9 @@ Open browser search for:
 Open browser search for: 
 
 -http://localhost/pos/public/index.php
+
+------------------------------------------
+
 
 
 Accounts:
