@@ -1,13 +1,13 @@
+----------------------------------------------
 POS PROJECT
 
 POS development for a school project.
 
 ---------------------------------------------
 
-
-Installation guide
-
-
+--------------------------
+INSTALLTAION GUIDE
+--------------------------
 Download and Install 
 
 -Xamp (https://www.apachefriends.org)
@@ -31,10 +31,10 @@ Open browser search for:
 ------------------------------------------
 
 
-
+-------------------------
 Accounts:
 
 email@email.com
 
 password
-
+-------------------------
