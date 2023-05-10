@@ -5,9 +5,9 @@ POS development for a school project.
 
 ---------------------------------------------
 
---------------------------
+
 INSTALLTAION GUIDE
---------------------------
+
 Download and Install 
 
 -Xamp (https://www.apachefriends.org)
@@ -31,10 +31,9 @@ Open browser search for:
 ------------------------------------------
 
 
--------------------------
 Accounts:
 
 email@email.com
 
 password
--------------------------
+
