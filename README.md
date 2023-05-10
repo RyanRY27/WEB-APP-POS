@@ -6,7 +6,7 @@ POS development for a school project.
 ---------------------------------------------
 
 
-INSTALLTAION GUIDE
+INSTALLTAION GUIDE:
 
 Download and Install 
 
