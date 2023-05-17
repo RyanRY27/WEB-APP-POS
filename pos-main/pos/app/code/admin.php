@@ -9,12 +9,26 @@ if ($tab == "products")
 	$productClass = new Product();
 	$products = $productClass->query("select * from products order by id desc");
 
+
 }else
 if ($tab == "sales") 
 {
-	
 	$saleClass = new Sale();
 	$sales = $saleClass->query("select * from sales order by id desc");
+
+
+	//today's sales
+	$year =  date("Y");
+	$month =  date("m");
+	$day =  date("d");
+
+	$query = "SELECT sum(total) as total FROM sales WHERE day(date) = $day &&  month(date) = $month && year(date) = $year";
+
+	$stotal = $saleClass->query("$query");
+	$sales_total = 0;
+	if($stotal){
+		$sales_total = $stotal[0]['total'] ?? 0;
+	}
 
 }else
 if ($tab == "users") 

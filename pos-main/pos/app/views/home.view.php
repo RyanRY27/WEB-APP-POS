@@ -15,7 +15,6 @@
 
     </style>
 
-
     <div class="container fluid p-1">
         <center><h2></i>My POS</h2></center>
     </div>

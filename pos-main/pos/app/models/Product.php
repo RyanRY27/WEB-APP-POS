@@ -82,7 +82,7 @@ class Product extends Model
     public  function generate_barcode()
     {
 
-       return "7777" . rand(1000,999999999);
+       return "01" . rand(1000,999999999);
     }
     public  function generate_filename($ext = "jpg")
     {

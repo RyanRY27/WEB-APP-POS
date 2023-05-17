@@ -71,16 +71,16 @@
                 <?php endif;?>
         
             <br>
-            <button class="mb-3 mt-4 btn btn-primary float-end">Save</button>
+            <button class="mb-3 mt-4 btn btn-primary float-end"><i class="fa-solid fa-download"></i> Save</button>
             <a href="index.php?page=admin&tab=users">
-                <button type="button" class="mb-3 mt-4 btn btn-danger">Cancel</button>
+                <button type="button" class="mb-3 mt-4 btn btn-danger"><i class="fa-solid fa-ban"></i> Cancel</button>
             </a>
         </form> 
         <?php else:?>
             <div class="alert alert-danger text-center">User not found!</div>
 
             <a href="index.php?page=admin&tab=users">
-                <button type="button" class="mb-3 mt-4 btn btn-danger">Cancel</button>
+                <button type="button" class="mb-3 mt-4 btn btn-danger"><i class="fa-solid fa-ban"></i> Cancel</button>
             </a>
         <?php endif;?>
     </div>
