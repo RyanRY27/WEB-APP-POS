@@ -20,7 +20,7 @@ if(!empty($raw_data))
 				//search
 				$barcode = $OBJ['text'];
 				$text = "%".$OBJ['text']."%";
-				$query = "select * from products where description like :find || barcode = :barcode limit 10";
+				$query = "select * from products where description like :find || barcode = :barcode limit 11";
 				$rows = $productClass->query($query,['find'=>$text,'barcode'=>$barcode]);
 
 			}else{

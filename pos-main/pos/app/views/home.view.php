@@ -46,16 +46,15 @@
             <div class="table-responsive" style="block-size:500px">
                 <table class="table table-striped table-hover">
                     <tr>
-                        <th>Name</th><th>Description</th><th>Amount</th>
+                        <th>Image</th><th>Description</th><th>Amount</th>
                     </tr>
                     <tbody class="js-items">
-                    
+                  
                    
                     </tbody>
                 </table>
-            </div>
-            <div class="js-subtotal alert alert-danger mt-4 "style="font-size:20px">Subtotal: ₱ 0.00</div>  
-            <div class="js-gtotal alert alert-danger mt-4" style="font-size:20px">Total: ₱ 0.00 </div>
+            </div>  
+            <div class="js-gtotal alert alert-danger mt-4" style="font-size:20px">Total: ₱ 0.00</div>
             <div class="d-flex">
                 <button onclick="clear_all()" class="col ms-2 me-2 mt-2 py-2 btn btn-danger">Cancel</button>
                 <button onclick="show_modal('amount-paid')" class="col ms-2 me-2 mt-2 py-2 btn btn-primary">Check Out</button>
@@ -120,7 +119,6 @@
     var PRODUCTS = [];
     var ITEMS    = [];
     var BARCODE  = false;
-    var STOTAL   = 0;
     var GTOTAL   = 0;
     var CHANGE   = 0;
     var AMOUNT   = 0;
@@ -232,10 +230,10 @@
         return `
              <!--item-->
                 <tr>
-                <td style="inline-size:500px"><Img src="${data.image}" class="rounded-border" style="inline-size:80px; block-size:80px"></td> 
+                <td style="inline-size:110px"><Img src="${data.image}" class="rounded-border" style="inline-size:80px; block-size:80px"></td> 
                 <td class="text-dark">
                     ${data.description}
-                    <div class="input-group my-3" style="max-inline-size:100px">
+                    <div class="input-group my-3" style="max-inline-size:150px">
                         <button index="${index}" onclick="change_qty('down',event)" class="btn btn-outline-primary" type="submit"><i class="fa fa-minus"></i></button>
                         <input index="${index}" onblur="change_qty('input',event)" type="text" class="border-primary form-control" placeholder="1" value="${data.qty}">
                         <button index="${index}" onclick="change_qty('up',event)" class="btn btn-outline-primary" type="submit"><i class="fa fa-plus"></i></button>
@@ -284,8 +282,6 @@
         }
     }
 
-    
-
     function refresh_items_display()
     {
 
@@ -301,14 +297,12 @@
             items_div.innerHTML += item_html(ITEMS[i],i);
             grand_total += (ITEMS[i].qty * ITEMS[i].amount);
         }
-        var stotal_div = document.querySelector(".js-subtotal");
-        stotal_div.innerHTML = "Subtotal: ₱" + grand_total.toFixed(2);
-        STOTAL = grand_total;
-        var gtotal_div = document.querySelector(".js-gtotal-modal");
-        gtotal_div.innerHTML = "Total: ₱" + grand_total.toFixed(2);  
+         
         var gtotal_div = document.querySelector(".js-gtotal");
         gtotal_div.innerHTML = "Total: ₱" + grand_total.toFixed(2);
         GTOTAL = grand_total;
+        var gtotal_div = document.querySelector(".js-gtotal-modal");
+        gtotal_div.innerHTML = "Total: ₱" + grand_total.toFixed(2);
     } 
 
     function clear_all()
@@ -319,7 +313,6 @@
 
         ITEMS = [];
         refresh_items_display();
-        
 
     }
 

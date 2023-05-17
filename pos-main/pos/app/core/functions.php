@@ -56,16 +56,33 @@ function auth($column)
     return "Unknown";
 }
     
-function crop($filename,$size = 400)
+function crop($filename,$size = 400,$type = 'product')
 {
 
     $ext = strtolower(pathinfo($filename,PATHINFO_EXTENSION));
     $cropped_file = preg_replace("/\.$ext$/", "_cropped.".$ext, $filename);
 
+    //
     if(file_exists($cropped_file))
     {
         return $cropped_file;
     }
+
+    //
+    if(!file_exists($filename))
+    {   
+        if($type == "male"){
+            return 'assets/img/male-icon.jpg';
+        }else
+        if($type == "female"){
+            return 'assets/img/female-user-icon.png';
+        }else{
+            return 'assets/img/no_image.jpg';
+        }
+    }
+
+
+
 
     //create image resource
     switch ($ext) {

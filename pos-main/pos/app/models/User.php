@@ -12,11 +12,12 @@ class User extends Model
 	            'email',
 	            'password',
 	            'role',
+	            'gender',
 	            'date',
 	            'image',
 	        ];
 	
-	public function validate($data)
+	public function validate($data, $id = null)
 	{
 
 	    $errors = [];
@@ -39,18 +40,34 @@ class User extends Model
 	            $errors['email'] = "Email is not valid";
 	        }
 
-	        if(empty($data['password']))
-	        {
-	            $errors['password'] = "Please enter a password";
-	        }else
-	        if($data['password'] !== $data['password_retype'])
-	        {
-	            $errors['password_retype'] = "Password do not match";
-	        }else
-	        if(strlen($data['password']) <8)
-	        {
-	            $errors['password'] = "Password must be 8 characters long";
-	        }
+	        if(!$id){
+		        if(empty($data['password']))
+		        {
+		            $errors['password'] = "Please enter a password";
+		        }else
+		        if($data['password'] !== $data['password_retype'])
+		        {
+		            $errors['password_retype'] = "Password do not match";
+		        }else
+		        if(strlen($data['password']) <8)
+		        {
+		            $errors['password'] = "Password must be 8 characters long";
+		        }
+	    	}else{
+
+	    		if(!empty($data['password']))
+		        {
+			        if($data['password'] !== $data['password_retype'])
+			        {
+			            $errors['password_retype'] = "Password do not match";
+			        }else
+			        if(strlen($data['password']) <8)
+			        {
+			            $errors['password'] = "Password must be 8 characters long";
+			        }
+		    	}
+	    	
+	    	}
 
 	    return $errors;
 	}
