@@ -14,18 +14,20 @@ if(!empty($raw_data))
 		{
 
 			$productClass = new Product();
+			$limit = 1000;
 
 			if(!empty($OBJ['text']))
 			{
 				//search
 				$barcode = $OBJ['text'];
 				$text = "%".$OBJ['text']."%";
-				$query = "select * from products where description like :find || barcode = :barcode limit 11";
+				$query = "select * from products where description like :find || barcode = :barcode order by views desc limit $limit";
 				$rows = $productClass->query($query,['find'=>$text,'barcode'=>$barcode]);
 
 			}else{
 				//get all
-				$rows = $productClass->getAll();
+				//$limit = 10,$offset = 0,$order = "desc",$order_column = "id"
+				$rows = $productClass->getAll($limit,0,'desc','views');
 			}
 			
 			if($rows){
@@ -78,8 +80,14 @@ if(!empty($raw_data))
 					$arr['date'] 		= $date;
 					$arr['user_id'] 	= $user_id; 
 
-					$query = "insert into sales (barcode,date,receipt_no,description,qty,amount,total,user_id) values (:barcode,:date,:receipt_no,:description,:qty,:amount,:total,:user_id)";
+					$query = "insert into sales (barcode,receipt_no,description,qty,amount,total,date,user_id) values (:barcode,:receipt_no,:description,:qty,:amount,:total,:date,:user_id)";
 					$db->query($query, $arr);
+
+					//view count
+					$query = "update products set views = views + 1 where id = :id limit 1";
+					$db->query($query,['id'=>$check['id']]);
+
+
 				}
 
 

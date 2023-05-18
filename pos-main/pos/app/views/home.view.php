@@ -15,12 +15,12 @@
 
     </style>
 
-    <div class="container fluid p-1">
+    <div class="container fluid">
         <center><h2></i>My POS</h2></center>
     </div>
 
     <div class="d-flex">
-        <div style="min-height:800px" class="shadow-sm col-9 p-4">
+        <div style="block-size:800px" class="shadow-sm col-9 p-2">
        
             <div class="mb-3"><h2 class="d-flex justify-content-center"><i class="bi bi-basket me-2"></i>Items</h2>
                 <div class="d-flex justify-content-end m-2">
@@ -38,12 +38,12 @@
 
         </div>
 
-        <div class="col-3 p- pt-2">
+        <div class="col-3 bg-light p-4 pt-2">
 
         <div><center><h3><i class="bi bi-basket-fill"></i> Cart <div class="js-item-count badge bg-secondary rounded-circle text-white">0</div></h3></center></div>
 
-            <div class="table-responsive" style="block-size:500px">
-                <table class="table table-striped table-hover">
+            <div class="table-responsive" style="block-size:550px">
+                <table class="table table-hover">
                     <tr>
                         <th>Image</th><th>Description</th><th>Amount</th>
                     </tr>
@@ -209,7 +209,7 @@
 
         return `
             <!--card-->
-            <div class="card m-2 border-0" style="min-width: 170px;max-width: 170px;">
+            <div class="card m-2 border-0" style="min-width: 150px;max-width: 150px;">
                 <a href="#">
                     <img index="${index}" src="${data.image}" class="w-100 rounded border">
                 </a>
@@ -463,7 +463,15 @@
         //clear items
         ITEMS = [];
         refresh_items_display();
+
+        //reload products
+        send_data({
+
+            data_type:"search",
+            text:""
+        });
     }
+
 
     send_data({
 

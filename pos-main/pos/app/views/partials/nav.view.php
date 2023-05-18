@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light pe-2" style="min-inline-size:350px" >
-        <div class="container-fluid shadow">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="min-inline-size:350px" >
+        <div class="container-fluid shadow-sm">
         <img src=" ../public/assets/img/siitelogo.png  " height="60px" width="60x" class="ps-1 ms-4 my-2 img-fluid">
             <a class="navbar-brand ms-2" href="index.php?page=home"> <?=APP_NAME?></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

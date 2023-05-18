@@ -14,7 +14,12 @@ if ($tab == "products")
 if ($tab == "sales") 
 {
 	$saleClass = new Sale();
-	$sales = $saleClass->query("select * from sales order by id desc");
+
+	$limit = 10;
+	$page_number = $_GET['pg'] ?? 1;
+	$offset = ($page_number - 1) * $limit;
+
+	$sales = $saleClass->query("select * from sales order by id desc limit $limit offset $offset");
 
 
 	//today's sales

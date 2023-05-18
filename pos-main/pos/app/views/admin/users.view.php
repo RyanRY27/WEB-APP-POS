@@ -1,17 +1,19 @@
-<div class="table-responsive">
+<div class="table-responsive" style="block-size:500px">
 	
-	<table class="table table-striped table-hover">
+	<table class="table table-hover">
+	<thead>
 		<tr>
 		<th>Image</th><th>Username</th><th>Email</th><th>Gender</th><th>Role</th><th>Date</th>
 			<th>
 				<a href="index.php?page=signup">
-				<button type="button" class="btn btn-outline-primary">
+				<button type="button" class="btn btn-outline-primary ">
 				  <i class="fa-solid fa-plus me-1"></i>Add user
 				</button>
 			</a>
 			</th>
 		</tr>
-
+	</thead>
+	<tbody>
 		<?php if (!empty($users)):?>
 			<?php foreach ($users as $user):?>
 	 		<tr>
@@ -40,7 +42,7 @@
 			</tr>
 			<?php endforeach;?>
 		<?php endif;?>
-		
+	</tbody>	
 	</table>
 </div>
 

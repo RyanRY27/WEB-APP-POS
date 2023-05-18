@@ -1,8 +1,8 @@
 <?php require viewpath('partials/head');?>
 
-<h3 class="ms-5 pt-5 mt-3"><i class="fa-solid fa-user-shield me-1 ms-5" style="color: #000000;"></i>ADMIN</h3>
+<h3 class="ms-5 mt-2"><i class="fa-solid fa-user-shield me-1 ms-5" style="color: #000000;"></i>ADMIN</h3>
 
-<div class="pt-4 container-fluid row">
+<div class="pt-2 container-fluid row">
 	<div class="col-12 col-sm-4 col-md-3 col-lg-2">
 		<div class="list-group">
 			<a href="index.php?page=admin&tab=dashboard" class="list-group-item list-group-item-action <?=!$tab || $tab == 'dashboard'?'active':''?>"><i class="fa-solid fa-chart-line ms-2 me-2"style="color: #000000;" ></i>Dashboard</a>
@@ -13,7 +13,7 @@
 			<a href="index.php?page=logout" class="list-group-item list-group-item-action"><i class="fa-solid fa-right-from-bracket ms-2 me-2" style="color: #000000;"></i>Log Out</a>
 		</div>
 	</div>
-	<div class="border col p-3">
+	<div class="border col p-3" style="block-size:765px">
 		<h2><?=strtoupper($tab)?></h2>
 		
 		<?php
