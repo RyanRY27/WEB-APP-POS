@@ -15,14 +15,10 @@
 
     </style>
 
-    <div class="container fluid">
-        <center><h2></i>My POS</h2></center>
-    </div>
-
     <div class="d-flex">
         <div style="block-size:800px" class="shadow-sm col-9 p-2">
        
-            <div class="mb-3"><h2 class="d-flex justify-content-center"><i class="bi bi-basket me-2"></i>Items</h2>
+            <div class="mb-3"><h2 class="d-flex justify-content-center"><i class="bi bi-cart"></i> Items</h2>
                 <div class="d-flex justify-content-end m-2">
                 <form class="d-flex " role="search">
                     <input onkeyup="check_for_enter_key(event)" oninput="search_item(event)" type="text" class="form-control js-search" placeholder="Search Product..." aria-label="Search Product..." aria-describedby="basic-addon1">
@@ -40,7 +36,7 @@
 
         <div class="col-3 bg-light p-4 pt-2">
 
-        <div><center><h3><i class="bi bi-basket-fill"></i> Cart <div class="js-item-count badge bg-secondary rounded-circle text-white">0</div></h3></center></div>
+        <div><center><h2><i class="bi bi-cart-plus"></i> Cart <div class="js-item-count badge bg-secondary rounded-circle text-white">0</div></h2></center></div>
 
             <div class="table-responsive" style="block-size:550px">
                 <table class="table table-hover">

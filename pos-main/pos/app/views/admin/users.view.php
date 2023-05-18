@@ -1,9 +1,9 @@
-<div class="table-responsive" style="block-size:500px">
+<div class="table-responsive">
 	
 	<table class="table table-hover">
 	<thead>
 		<tr>
-		<th>Image</th><th>Username</th><th>Email</th><th>Gender</th><th>Role</th><th>Date</th>
+		<th>Image</th><th>Username</th><th>Email</th><th>User ID</th><th>Gender</th><th>Role</th><th>Date</th>
 			<th>
 				<a href="index.php?page=signup">
 				<button type="button" class="btn btn-outline-primary ">
@@ -30,6 +30,7 @@
 					</a>	
 				</td>
 				<td><?=esc($user['email'])?></td>
+				<td><?=esc($user['id'])?></td>
 				<td><?=esc($user['gender'])?></td>
 				<td><?=esc($user['role'])?></td>
 				<td><?=esc($user['date'])?></td>
@@ -44,10 +45,11 @@
 		<?php endif;?>
 	</tbody>	
 	</table>
+
+	<?php
+		$pager->pages = 1;
+		$pager->display_page(count($users))
+
+	?>
 </div>
 
-<script>
-	function adduser(){
-		var name
-	}
-</script>

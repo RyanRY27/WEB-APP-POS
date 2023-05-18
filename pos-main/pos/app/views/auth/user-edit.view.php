@@ -2,10 +2,10 @@
 
 <div class="container-fluid border col-lg-4 col-md-5 mt-5 p-4 pt-5 shadow">
 
-        <?php  if(is_array($row)):?>
+        <?php if(is_array($row)):?>
         <form method="post">
             <center>
-                <h3><i class="fa fa-user-plus"></i> Edit User</h3>
+                <h3><i class="fa-solid fa-user-pen"></i> Edit User</h3>
                 <div><?=esc(APP_NAME)?></div>
             </center>
             <br>
@@ -28,7 +28,7 @@
 
            <div class="mb-3">
               <label for="exampleFormControlInput1" class="form-label">Gender</label>
-                <select  name="gender" class="form-control  <?=!empty($errors['gender']) ? 'border-danger':''?>" >
+                <select  name="gender" class="form-select  <?=!empty($errors['gender']) ? 'border-danger':''?>" >
                     <option><?=$row['gender']?></option>
                     <option>male</option>
                     <option>female</option>
@@ -38,12 +38,13 @@
                 <?php endif;?>
             </div>
 
-
+            <?php if(Auth::get('role') == "owner"||"admin"):?>
            <div class="mb-3">
               <label for="exampleFormControlInput1" class="form-label">Role</label>
-                <select  name="role" class="form-control  <?=!empty($errors['role']) ? 'border-danger':''?>" >
+                <select  name="role" class="form-select  <?=!empty($errors['role']) ? 'border-danger':''?>" >
                     <option><?=$row['role']?></option>
                     <option>admin</option>
+                    <option>owner</option>
                     <option>supervisor</option>
                     <option>cashier</option>
                     <option>user</option>
@@ -53,7 +54,7 @@
                     <small class="text-danger"><?=$errors['role']?></small>
                 <?php endif;?>
             </div>
-
+            <?php endif;?>
 
             <label for="inputPassword5" class="form-label">Password</label>
                 <input name="password"type="password" id="inputPassword5" class="form-control <?=!empty($errors['password']) ? 'border-danger':''?>" aria-labelledby="passwordHelpBlock" placeholder="Password123">
@@ -72,9 +73,12 @@
         
             <br>
             <button class="mb-3 mt-4 btn btn-primary float-end"><i class="fa-solid fa-download"></i> Save</button>
+            <?php if(Auth::get('role') == "owner"||"admin"):?>
             <a href="index.php?page=admin&tab=users">
-                <button type="button" class="mb-3 mt-4 btn btn-danger"><i class="fa-solid fa-ban"></i> Cancel</button>
+                <button type="button" class="mb-3 mt-4 btn btn-danger float-end me-3"><i class="fa-solid fa-ban"></i> Cancel</button>
             </a>
+            <?php endif;?>
+            <div class="clearfix"></div>
         </form> 
         <?php else:?>
             <div class="alert alert-danger text-center">User not found!</div>
@@ -82,6 +86,7 @@
             <a href="index.php?page=admin&tab=users">
                 <button type="button" class="mb-3 mt-4 btn btn-danger"><i class="fa-solid fa-ban"></i> Cancel</button>
             </a>
+
         <?php endif;?>
     </div>
     

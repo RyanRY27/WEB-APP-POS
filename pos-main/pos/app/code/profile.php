@@ -3,18 +3,18 @@
 $errors = [];
 $user = new User();
 
-$id = $_GET['id'] ?? null;
+$id = $_GET['id'] ?? Auth::get('id');
 $row = $user->first(['id'=>$id]);
 	
 if ($_SERVER['REQUEST_METHOD'] == "POST")
 {
 
 	//restriction in editing profile role
-	if(isset($_POST['role']) && $_POST['role'] != $row['role'])
+	if($_POST['role'] == "owner")
 	{
-		if(Auth::get('role') != "admin")
+		if(!Auth::get('role') == "owner")
 		{
-			$_POST['role'] = $row['role'];
+			$_POST['role'] = "user";
 		}
 	}	
 	
@@ -32,15 +32,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST")
 		$user->update($id,$_POST);
 		
 		
-		redirect("user-edit&id=$id");
+		redirect('admin&tab=users');
 	}
 	
 }
 if(Auth::access('owner') || ($row && $row['id'] == Auth::get('id'))){
-	require viewpath('auth/user-edit');
+	require viewpath('auth/profile');
 }
 else{
 
 	Auth::set_message("Only Admin can Create Users!!");
 	require viewpath('auth/security');
-}	
+}

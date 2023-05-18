@@ -16,8 +16,8 @@ if ($tab == "sales")
 	$saleClass = new Sale();
 
 	$limit = 10;
-	$page_number = $_GET['pg'] ?? 1;
-	$offset = ($page_number - 1) * $limit;
+	$pager = new Pager($limit); 
+	$offset = $pager->offset;
 
 	$sales = $saleClass->query("select * from sales order by id desc limit $limit offset $offset");
 
@@ -36,11 +36,15 @@ if ($tab == "sales")
 	}
 
 }else
+
 if ($tab == "users") 
 {
-	
+	$limit = 5;
+	$pager = new Pager($limit);
+	$offset = $pager->offset;
+
 	$userClass = new User();
-	$users = $userClass->query("select * from users order by id desc");
+	$users = $userClass->query("select * from users order by id desc limit $limit offset $offset");
 
 }
 

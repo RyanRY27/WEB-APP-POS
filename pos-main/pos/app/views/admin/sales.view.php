@@ -52,64 +52,10 @@
 
 <?php
 
-function page_link($pg)
-{
-	//url
-	$url = "index.php?";
-	$url2 = "";
-	foreach ($_GET as $key => $value) {
-		if($key == 'pg'){
-			$url2 .= "&".$key ."=$pg";
-		}else{
-			$url2 .= "&".$key ."=".$value;
-		}
-	}
-			
+	$pager->display_page();
 
-	$url2 = trim($url2,"&");
-	if(!strstr($url2, "pg="))
-	{
-		$url2 .= "&pg=$pg";
-	}
-
-	$url .= $url2;
-	return $url;
-}
+?>	
 
 
-?>
-
-<nav aria-label="Page navigation example">
-  <ul class="pagination justify-content-end me-3">
-    <li class="page-item">
-      <a class="page-link" href="<?=page_link($page_number - 1)?>" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-
-    <li class="page-item active">
-    	<a class="page-link" href="<?=page_link(1)?>">1</a>
-    </li>
-
-    <li class="page-item">
-    	<a class="page-link" href="<?=page_link(2)?>">2</a>
-    </li>
-
-    <li class="page-item">
-    	<a class="page-link" href="<?=page_link(3)?>">3</a>
-    </li>
-
-    <li class="page-item">
-      <a class="page-link" href="<?=page_link($page_number + 1)?>" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</nav>
 </div>
 
-<script>
-	function addsale(){
-		var name
-	}
-</script>

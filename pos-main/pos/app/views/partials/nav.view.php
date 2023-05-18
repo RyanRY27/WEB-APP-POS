@@ -39,7 +39,7 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="index.php?page=profile">Profile</a></li>
-                    <li><a class="dropdown-item" href="index.php?page=settings">Profile Settings</a></li>
+                    <li><a class="dropdown-item" href="index.php?page=user-edit&id=<?=Auth::get('id')?>">Profile Settings</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="index.php?page=logout">Logout</a></li>
                 </ul>

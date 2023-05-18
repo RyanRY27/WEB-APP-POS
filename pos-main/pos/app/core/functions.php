@@ -180,3 +180,10 @@ function get_receipt_no()
     return $num;
 
 }
+
+function get_date($date)
+{
+
+    return date("jS M, Y",strtotime($date));
+
+}
