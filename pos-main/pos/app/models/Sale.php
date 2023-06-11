@@ -25,7 +25,7 @@ class Sale extends Model
     {
 
         $errors = [];
-
+        
             if(empty($data['description']))
             {
                 $errors['description'] = "Please enter Sale description";

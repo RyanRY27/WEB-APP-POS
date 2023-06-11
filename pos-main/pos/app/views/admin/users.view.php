@@ -6,7 +6,7 @@
 		<th>Image</th><th>Username</th><th>Email</th><th>User ID</th><th>Gender</th><th>Role</th><th>Date</th>
 			<th>
 				<a href="index.php?page=signup">
-				<button type="button" class="btn btn-outline-primary ">
+				<button type="button" class="btn btn-outline-primary btn-sm">
 				  <i class="fa-solid fa-plus me-1"></i>Add user
 				</button>
 			</a>

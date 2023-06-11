@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="min-inline-size:350px" >
         <div class="container-fluid shadow-sm">
-        <img src=" ../public/assets/img/siitelogo.png  " height="60px" width="60x" class="ps-1 ms-4 my-2 img-fluid">
+        <img src="assets/img/siitelogo.png" height="60px" width="60x" class="ps-1 ms-4 my-2 img-fluid">
             <a class="navbar-brand ms-2" href="index.php?page=home"> <?=APP_NAME?></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -8,24 +8,20 @@
             
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <?php if(Auth::access('cashier')):?>
                 <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="index.php?page=home">My POS</a>
                 </li>
+            <?php endif;?>
 
             <?php if(Auth::access('owner')):?>
                 <li class="nav-item">
                 <a class="nav-link" href="index.php?page=admin">Admin</a>
                 </li>
             <?php endif;?>
-               
+             
 
-            <?php if(Auth::access('admin')):?>
-                <li class="nav-item">
-                <a class="nav-link" href="index.php?page=signup">Create User</a>
-                </li>
-            <?php endif;?>
-
-             <?php if(!Auth::logged_in()):?>
+            <?php if(!Auth::logged_in()):?>
                 <li class="nav-item">
                 <a class="nav-link" href="index.php?page=login">Login</a>
                 </li>

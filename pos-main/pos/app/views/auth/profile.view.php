@@ -8,13 +8,9 @@
                 <div><?=esc(APP_NAME)?></div>
             </center>
             <br>
+            <center><img src="<?=crop($row['image'],400,$row['gender'])?>" style="width: 100%;max-width:100px;" ></center>
             <table class="table table-responsive  table-hover table-striped">
-                <tr>
-                    <td colspan="2">
-                            <img src="<?=crop($row['image'],400,$row['gender'])?>" style="width: 100%;max-width:100px;" >
-                    </td>
-                </tr>
-                <tr>
+                <br>
                     <th>Username</th><td><?=$row['username']?></td>
                 </tr>  
                 <tr>

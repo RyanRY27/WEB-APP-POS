@@ -6,7 +6,7 @@
 				<th>Barcode</th><th>Product</th><th>Qty</th><th>Price</th><th>Image</th><th>Date</th>
 				<th>
 					<a href="index.php?page=product-add">
-					<button type="button" class="btn btn-outline-primary">
+					<button type="button" class="btn btn-outline-primary btn-sm">
 					  <i class="fa-solid fa-plus me-1"></i>Add Product
 					</button>
 				</a>
@@ -42,8 +42,3 @@
 	</table>
 </div>
 
-<script>
-	function addproduct(){
-		var name
-	}
-</script>

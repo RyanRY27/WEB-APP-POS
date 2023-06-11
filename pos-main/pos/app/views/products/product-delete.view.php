@@ -18,7 +18,7 @@
             </div>
             <div class="form-floating mt-2 mb-3">
                 <input disabled readonly value="<?=set_value('barcode',$row['barcode'])?>" name="barcode" type="text" class="form-control" id="barcodefloatingInput" placeholder="Product Barcode">
-                <label for="barcodedfloatingInput" class="form-label">Product Barcode<small class="text-muted"> (optional)</small></label>
+                <label for="barcodedfloatingInput" class="form-label">Product Barcode<small class="text-muted"></small></label>
                
             </div>
                 

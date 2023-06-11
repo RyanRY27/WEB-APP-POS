@@ -26,7 +26,7 @@ class User extends Model
 	        {
 	            $errors['username'] = "Please enter a Username";
 	        }else
-	        if(!preg_match('/^[a-zA-Z ]+$/', $data['username']))
+	        if(!preg_match('/^[a-zA-Z0-9 ]+$/', $data['username']))
 	        {
 	            $errors['username'] = "Please use letters only";
 	        }

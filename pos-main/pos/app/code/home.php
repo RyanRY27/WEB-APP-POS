@@ -7,8 +7,7 @@ if(Auth::access('cashier')){
 }
 else{
 
-	Auth::set_message("You need to be Logged In!!");
-	require viewpath('auth/security');
+	redirect('login');	
 }
 
 

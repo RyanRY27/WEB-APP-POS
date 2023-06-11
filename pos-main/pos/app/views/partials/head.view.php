@@ -10,6 +10,11 @@
     <link rel="stylesheet" type="text/css" href="assets/css/all.css">
     <link rel="stylesheet" type="text/css" href="assets/css/solid.css">
     <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+    
+    
+
+    <link href="assets/css/modals.css" rel="stylesheet">
+    
 </head>
 <body>
    

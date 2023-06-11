@@ -1,13 +1,34 @@
+<?php 
+
+if(!empty($_SESSION['refer'])){
+    $blink = $_SESSION['refer'];
+}else{
+    $blink = "index.php?page=admin&tab=users";
+}
+
+?>
+
 <?php require viewpath('partials/head');?>
 
-<div class="container-fluid border col-lg-4 col-md-5 mt-5 p-4 pt-5 shadow">
+<div class="container-fluid border col-lg-4 col-md-5 mt-1 p-4 pt-3 shadow">
 
         <?php if(is_array($row)):?>
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             <center>
                 <h3><i class="fa-solid fa-user-pen"></i> Edit User</h3>
                 <div><?=esc(APP_NAME)?></div>
             </center>
+            <br>
+
+            <div class="mb-3">
+                <label for="formFile" class="form-label">User Image</label>
+                <input name="image" class="form-control <?=!empty($errors['image']) ? 'border-danger':''?>" type="file" id="formFile">
+                <?php if(!empty($errors['image'])):?>
+                    <small class="text-danger"><?=$errors['image']?></small>
+                <?php endif;?>
+            </div>
+      
+                <img class="mx-auto d-block" src="<?=$row['image']?>" style="width: 25%;">
             <br>
 
             <div class="mb-3">
@@ -59,7 +80,6 @@
             <label for="inputPassword5" class="form-label">Password</label>
                 <input name="password"type="password" id="inputPassword5" class="form-control <?=!empty($errors['password']) ? 'border-danger':''?>" aria-labelledby="passwordHelpBlock" placeholder="Password123">
                 <div id="passwordHelpBlock" class="form-text">
-                Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
                 <?php if(!empty($errors['password'])):?>
                     <small class="text-danger"><?=$errors['password']?></small>
                 <?php endif;?>
@@ -73,17 +93,19 @@
         
             <br>
             <button class="mb-3 mt-4 btn btn-primary float-end"><i class="fa-solid fa-download"></i> Save</button>
-            <?php if(Auth::get('role') == "owner"||"admin"):?>
-            <a href="index.php?page=admin&tab=users">
-                <button type="button" class="mb-3 mt-4 btn btn-danger float-end me-3"><i class="fa-solid fa-ban"></i> Cancel</button>
-            </a>
-            <?php endif;?>
-            <div class="clearfix"></div>
+
+            
+                <a href="<?=$blink?>">
+                    <button type="button" class="mb-3 mt-4 btn btn-danger float-end me-3"><i class="fa-solid fa-ban"></i> Cancel</button>
+                </a>
+            <br>
+            <br>
         </form> 
+
         <?php else:?>
             <div class="alert alert-danger text-center">User not found!</div>
 
-            <a href="index.php?page=admin&tab=users">
+            <a href="<?=$blink?>">
                 <button type="button" class="mb-3 mt-4 btn btn-danger"><i class="fa-solid fa-ban"></i> Cancel</button>
             </a>
 

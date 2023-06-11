@@ -16,7 +16,7 @@
     </style>
 
     <div class="d-flex">
-        <div style="block-size:800px" class="shadow-sm col-9 p-2">
+        <div style="block-size:770px" class="shadow-sm col-9 p-3">
        
             <div class="mb-3"><h2 class="d-flex justify-content-center"><i class="bi bi-cart"></i> Items</h2>
                 <div class="d-flex justify-content-end m-2">
@@ -27,7 +27,7 @@
                 </div>
             </div>
     
-            <div onclick="add_item(event)" class="js-products d-flex" style="flex-wrap: wrap; height: 90%; overflow-y: scroll">
+            <div onclick="add_item(event)" class="js-products d-flex" style="flex-wrap: wrap; height: 85%; overflow-y: scroll">
 
 
             </div>
@@ -38,7 +38,7 @@
 
         <div><center><h2><i class="bi bi-cart-plus"></i> Cart <div class="js-item-count badge bg-secondary rounded-circle text-white">0</div></h2></center></div>
 
-            <div class="table-responsive" style="block-size:550px">
+            <div class="table-responsive" style="block-size:500px">
                 <table class="table table-hover">
                     <tr>
                         <th>Image</th><th>Description</th><th>Amount</th>
@@ -48,59 +48,79 @@
                    
                     </tbody>
                 </table>
-            </div>  
-            <div class="js-gtotal alert alert-danger mt-4" style="font-size:20px">Total: ₱ 0.00</div>
+            </div> 
+            <div class="alert alert-danger"> 
+                <div class="js-subtotal" style="font-size:20px">SubTotal: ₱ 0.00</div>
+                <div class="js-gtotal" style="font-size:20px">Total: ₱ 0.00</div>
+            </div>
+            
             <div class="d-flex">
-                <button onclick="clear_all()" class="col ms-2 me-2 mt-2 py-2 btn btn-danger">Cancel</button>
-                <button onclick="show_modal('amount-paid')" class="col ms-2 me-2 mt-2 py-2 btn btn-primary">Check Out</button>
+                <button onclick="clear_all()" class="col ms-2 me-2 mt-2 py-2 btn btn-danger btn-lg">Cancel</button>
+                <button onclick="show_modal('amount-paid')" class="col ms-2 me-2 mt-2 py-2 btn btn-primary btn-lg">Check Out</button>
             </div>
         </div>
     </div>
+
+
+
 
 
 
 <!--modals-->
 
 <!--amount modals-->
-
-    <div role="close-button" onclick="hide_modal(event, 'amount-paid')" class="js-amount-paid-modal hide" style="animation: appear .4s ease;background-color: #00000044; width: 100%; height: 100%; position: fixed;left:0px;top:0px;z-index: 4;">
+     <div role="close-button" onclick="hide_modal(event, 'amount-paid')" class="js-amount-paid-modal hide" style="animation: appear .3s ease;background-color: #00000044; width: 100%; height: 100%; position: fixed;left:0px;top:0px;z-index: 4;">
             
-            <div style="width:500px;min-height: 370px;background-color: whitesmoke;padding: 10px;margin: auto;margin-top: 150px;box-shadow: 5px 10px #00000022;">
-               <div class="modal-header">
-                <h4><i class="fa fa-cart-shopping"></i>Check Out</h4><button role="close-button" onclick="hide_modal(event,'amount-paid')" type="button" class="btn-close float-end"></button>
-            </div>
-                
-                <div class="js-gtotal-modal alert alert-danger mt-4 " role="alert" style="font-size:20px"></div>
-                <label for="amountpaid" class="form-label" style="font-size:20px;">Amount Paid:</label>
-                <input onkeyup="if(event.keyCode == 13)validate_amount_paid(event)" type="text" class="js-amount-paid-input form-control" placeholder="Enter Amount Paid">
-                <br><br>
-                <button onclick="validate_amount_paid(event)" class="btn btn-outline-primary float-end my-auto mb-4 ms-3">Pay</button>
-                <button role="close-button" onclick="hide_modal(event,'amount-paid')" class="btn btn-outline-danger float-end ms-3">Cancel</button>
-            
+           <div class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog" id="modalSheet">
+               <div class="modal-dialog" role="document">
+               <div class="modal-content rounded-4 shadow">
+                <div class="modal-header border-bottom-0">
+                    <h4 class="modal-title fs-4"><i class="fa fa-cart-shopping"></i>Check Out</h4>
+                    <button role="close-button" onclick="hide_modal(event,'amount-paid')" type="button" class="btn-close float-end" aria-label="Close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body py-0">
+                    <div class="js-gtotal-modal alert alert-danger mt-4 " role="alert" style="font-size:20px"></div>
+                    <label for="amountpaid" class="form-label" style="font-size:20px;">Amount Paid:</label>
+                    <input onkeyup="if(event.keyCode == 13)validate_amount_paid(event)" type="text" class="js-amount-paid-input form-control" placeholder="Enter Amount Paid">
+                </div>
                 <br>
+                    
+                    <button onclick="validate_amount_paid(event)" class="btn btn-primary btn-lg my-3 mx-3">Pay</button>
+                    <button role="close-button" onclick="hide_modal(event,'amount-paid')" class="btn btn-danger btn-lg mx-3">Cancel</button>
+                <br>
+              
             </div>
-        
+            </div>
+        </div>
     </div>
+   </div> 
+</div>        
+         
 
 <!--end amoount modals-->
 <!--change modals-->
 
     <div role="close-button" onclick="hide_modal(event, 'change')" class="js-change-modal hide" style="animation: appear .4s ease;background-color: #00000044; width: 100%; height: 100%; position: fixed;left:0px;top:0px;z-index: 4;">
        
-            <div style="width:500px;min-height: 350px;background-color: whitesmoke;padding: 10px;margin: auto;margin-top: 150px;box-shadow: 5px 10px #00000022;">
-                <div class="modal-header">
-                <h3>Receipt:</h3><button role="close-button" onclick="hide_modal(event,'change')" class="btn-close float-end"></button>
+            <div class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog" id="modalSheet">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content rounded-4 shadow">
+               <div class="modal-header border-bottom-0">
+                <h4 class="modal-title fs-4">Receipt:</h4>
+                <button role="close-button" onclick="hide_modal(event,'change')" type="button" class="btn-close float-end" aria-label="Close" data-bs-dismiss="modal"></button>
             </div>
-                
+                <div class="modal-body py-0">
                 <div class="js-gtotal-change ms-4 mt-4" role="alert" style="font-size: 25px"></div>
                 <div class="js-amount-paid-input ms-4 mt-4" role="alert"style="font-size: 25px;"></div>
                 <div class="js-change-input ms-4 mt-4" role="alert"style="font-size: 25px;"></div>
                 <br>
-                <div class="modal-footer">
-                <button role="close-button" onclick="hide_modal(event,'change')" class="js-btn-close-change btn-primary float-end">Continue</button>
+                <div class="modal-footer flex-column align-items-stretch w-100 gap-2 pb-3 border-top-0">
+                <button role="close-button" onclick="hide_modal(event,'change')" class="js-btn-close-change btn-primary btn-lg">Continue</button>
             </div>
         </div>
-        
+        </div>
+        </div>
+    </div>
     </div>
 
 <!--end change modals-->
@@ -117,6 +137,7 @@
     var GTOTAL   = 0;
     var CHANGE   = 0;
     var AMOUNT   = 0;
+    var receipt_window = null;
 
     var main_input = document.querySelector(".js-search");
 
@@ -295,9 +316,9 @@
          
         var gtotal_div = document.querySelector(".js-gtotal");
         gtotal_div.innerHTML = "Total: ₱" + grand_total.toFixed(2);
-        GTOTAL = grand_total;
         var gtotal_div = document.querySelector(".js-gtotal-modal");
         gtotal_div.innerHTML = "Total: ₱" + grand_total.toFixed(2);
+        GTOTAL = grand_total;
     } 
 
     function clear_all()
@@ -380,10 +401,10 @@
             var mydiv = document.querySelector(".js-change-modal");
             mydiv.classList.remove("hide");
 
-            mydiv.querySelector(".js-change-input").innerHTML = CHANGE;
+            mydiv.querySelector(".js-change-input").innerHTML = change1;
             mydiv.querySelector(".js-amount-paid-input").innerHTML = AMOUNT;
-            mydiv.querySelector(".js-gtotal-change").innerHTML = GTOTAL;
-            mydiv.querySelector(".js-btn-close-change").focus();
+            mydiv.querySelector(".js-gtotal-change").innerHTML = gtotal_div;
+            mydiv.querySelector(".js-btn-close-change");
         } 
        
         
@@ -428,10 +449,11 @@
             alert("Amount must be higher or equal to the total!");
             return;
         }
-
-        CHANGE = amount - GTOTAL;
-        CHANGE = "Change: ₱ " + CHANGE.toFixed(2);
-        GTOTAL = "Total: ₱" + GTOTAL.toFixed(2);
+        change1 = 0
+        change1 = amount - GTOTAL
+        CHANGE = change1;
+        change1 = "Change: ₱ " + CHANGE.toFixed(2);
+        gtotal_div = "Total: ₱ " + GTOTAL.toFixed(2);
 
         hide_modal(true,'amount-paid');
         show_modal('change');
@@ -448,13 +470,24 @@
             ITEMS_NEW.push(tmp);
            
         }
-
+        //receipt
         //send cart through ajax
         send_data({
 
             data_type:"checkout",
             text:ITEMS_NEW
         });
+        //receipt
+
+        print_receipt({
+
+            company:'RMMS IHAW-IHAW',
+            amount:amount,
+            change:CHANGE,
+            gtotal:GTOTAL,
+            data:ITEMS
+        });
+
 
         //clear items
         ITEMS = [];
@@ -468,6 +501,21 @@
         });
     }
 
+    function print_receipt(obj)
+    {   
+        var vars = JSON.stringify(obj);
+
+        var receipt_window = window.open('index.php?page=print&vars='+vars,'printpage',"width=500px;");
+        
+        setTimeout(function(){
+            
+            receipt_window.close();
+
+        },10000);
+       
+
+
+    }
 
     send_data({
 
