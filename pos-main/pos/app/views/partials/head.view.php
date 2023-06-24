@@ -10,7 +10,8 @@
     <link rel="stylesheet" type="text/css" href="assets/css/all.css">
     <link rel="stylesheet" type="text/css" href="assets/css/solid.css">
     <link rel="stylesheet" type="text/css" href="assets/css/main.css">
-    
+    <link rel="stylesheet" type="text/css" href="assets/css/admin.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/login.css">
     
 
     <link href="assets/css/modals.css" rel="stylesheet">
@@ -24,7 +25,7 @@
         $no_nav[] = "product-edit";
        
     ?>
-    <?php if(!in_array($controller, $no_nav)):?>
+   <?php if(!in_array($controller, $no_nav)):?>
         <?php require viewpath('partials/nav');?>
     <?php endif;?>
     <div class="container-fluid" style="min-width: 350px;">
