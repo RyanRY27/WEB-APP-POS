@@ -1,4 +1,4 @@
-<div class="table-responsive pt-2" style="block-size:700px">
+<div class="table-responsive pt-2" style="block-size:700px; background-color: white;"">
 	
 	<table class="table table-hover">
 		<thead>
