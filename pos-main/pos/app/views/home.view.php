@@ -12,53 +12,73 @@
 
 
         }
+        
+        .input-group {
+    max-width: 120px;
+  }
+  
+  .input-group .btn {
+    padding: 0.2rem 0.3rem;
+    font-size: 0.9rem;
+  }
+  
+  .input-group input {
+    padding: 0.3rem;
+    font-size: 0.9rem;
+  }
+  .emboss-button {
+    background-color: red;
+    border: 2px solid black;
+  }
+  
+  .emboss-button i {
+    color: black;
+  }
 
     </style>
 
-    <div class="d-flex">
-        <div style="block-size:770px" class="shadow-sm col-9 p-3">
-       
-            <div class="mb-3"><h2 class="d-flex justify-content-center"><i class="bi bi-cart"></i> Items</h2>
-                <div class="d-flex justify-content-end m-2">
-                <form class="d-flex " role="search">
-                    <input onkeyup="check_for_enter_key(event)" oninput="search_item(event)" type="text" class="form-control js-search" placeholder="Search Product..." aria-label="Search Product..." aria-describedby="basic-addon1">
-                    <button class="btn btn-outline-primary"><i class="fa fa-search"></i></button>
-                </form>
-                </div>
-            </div>
-    
-            <div onclick="add_item(event)" class="js-products d-flex" style="flex-wrap: wrap; height: 85%; overflow-y: scroll">
+    <div class="d-flex rounded" style="background-color: rgba(255, 224, 224, 1);" >
+       <div style="height: 700px;" class="shadow-sm col-9 p-3">
+  <div class="mb-3">
+    <h2 class="text-center bg-white rounded-pill"><i class="bi bi-cart"></i> ITEMS</h2>
+    <div class="d-flex justify-content-end m-2">
+      <form class="d-flex" role="search">
+        <input onkeyup="check_for_enter_key(event)" oninput="search_item(event)" type="text" class="form-control js-search" placeholder="Search Product..." aria-label="Search Product..." aria-describedby="basic-addon1" style="border-color: red;">
+        <button class="btn emboss-button"><i class="fa fa-search"></i></button>
+      </form>
+    </div>
+  </div>
+  <div onclick="add_item(event)" class="js-products d-flex" style="flex-wrap: wrap; height: 85%; overflow-y: auto; scrollbar-width: thin; scrollbar-color: transparent transparent;">
+    <!-- Add product items dynamically -->
+  </div>
+</div>
 
-
-            </div>
-
-        </div>
 
         <div class="col-3 bg-light p-4 pt-2">
+  <h2 class="text-center"><i class="bi bi-cart-plus"></i> Cart <div class="js-item-count badge bg-secondary rounded-circle text-white">0</div></h2>
+  <div class="table-responsive" style="height: 500px;">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Description</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody class="js-items">
+        <!-- Add table rows dynamically -->
+      </tbody>
+    </table>
+  </div>
+  <div class="border col p-3" style="border-radius: 10px; background-color: #ffe0e0; font-weight:bold">
+    <div class="js-gtotal" style="font-size: 20px;">Total: ₱ 0.00</div>
+  </div>
+  <div class="d-flex">
+    <button onclick="clear_all()" class="col ms-2 me-2 mt-2 py-2 btn btn-danger btn-lg" style="border-radius: 20px; background-color: #FF5252; color: #FFFFFF; font-weight: bold; border: none; outline: none; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);">Cancel</button>
+<button onclick="show_modal('amount-paid')" class="col ms-2 me-2 mt-2 py-2 btn btn-primary btn-lg" style="border-radius: 20px; background-color: #536DFE; color: #FFFFFF; font-weight: bold; border: none; outline: none; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);">Check Out</button>
+  </div>
+</div>
 
-        <div><center><h2><i class="bi bi-cart-plus"></i> Cart <div class="js-item-count badge bg-secondary rounded-circle text-white">0</div></h2></center></div>
-
-            <div class="table-responsive" style="block-size:500px">
-                <table class="table table-hover">
-                    <tr>
-                        <th>Image</th><th>Description</th><th>Amount</th>
-                    </tr>
-                    <tbody class="js-items">
-                  
-                   
-                    </tbody>
-                </table>
-            </div> 
-            <div class="alert alert-danger"> 
-                <div class="js-subtotal" style="font-size:20px">SubTotal: ₱ 0.00</div>
-                <div class="js-gtotal" style="font-size:20px">Total: ₱ 0.00</div>
-            </div>
-            
-            <div class="d-flex">
-                <button onclick="clear_all()" class="col ms-2 me-2 mt-2 py-2 btn btn-danger btn-lg">Cancel</button>
-                <button onclick="show_modal('amount-paid')" class="col ms-2 me-2 mt-2 py-2 btn btn-primary btn-lg">Check Out</button>
-            </div>
-        </div>
     </div>
 
 
@@ -69,59 +89,57 @@
 <!--modals-->
 
 <!--amount modals-->
-     <div role="close-button" onclick="hide_modal(event, 'amount-paid')" class="js-amount-paid-modal hide" style="animation: appear .3s ease;background-color: #00000044; width: 100%; height: 100%; position: fixed;left:0px;top:0px;z-index: 4;">
-            
-           <div class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog" id="modalSheet">
-               <div class="modal-dialog" role="document">
-               <div class="modal-content rounded-4 shadow">
-                <div class="modal-header border-bottom-0">
-                    <h4 class="modal-title fs-4"><i class="fa fa-cart-shopping"></i>Check Out</h4>
-                    <button role="close-button" onclick="hide_modal(event,'amount-paid')" type="button" class="btn-close float-end" aria-label="Close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body py-0">
-                    <div class="js-gtotal-modal alert alert-danger mt-4 " role="alert" style="font-size:20px"></div>
-                    <label for="amountpaid" class="form-label" style="font-size:20px;">Amount Paid:</label>
-                    <input onkeyup="if(event.keyCode == 13)validate_amount_paid(event)" type="text" class="js-amount-paid-input form-control" placeholder="Enter Amount Paid">
-                </div>
-                <br>
-                    
-                    <button onclick="validate_amount_paid(event)" class="btn btn-primary btn-lg my-3 mx-3">Pay</button>
-                    <button role="close-button" onclick="hide_modal(event,'amount-paid')" class="btn btn-danger btn-lg mx-3">Cancel</button>
-                <br>
-              
-            </div>
-            </div>
+  <div class="js-amount-paid-modal hide" style="background-color: rgba(0, 0, 0, 0.4); width: 100%; height: 100%; position: fixed; left: 0; top: 0; z-index: 4;">
+  <div class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog" id="modalSheet">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content rounded-4 shadow">
+        <div class="modal-header border-bottom-0">
+          <h4 class="modal-title fs-4"><i class="fa fa-cart-shopping"></i> Check Out</h4>
+          <button role="close-button" onclick="hide_modal(event, 'amount-paid')" type="button" class="btn-close float-end" aria-label="Close" data-bs-dismiss="modal"></button>
         </div>
+        <div class="modal-body py-0">
+          <div class="js-gtotal-modal alert alert-danger mt-4" role="alert" style="font-size: 20px;"></div>
+          <div for="amountpaid" class="form-label" style="font-size: 20px;">Amount Paid:</div>
+          <input oninput="validate_amount_paid(event)" type="text" class="js-amount-paid-input form-control" placeholder="Enter Amount Paid">
+        </div>
+        <br>
+        <button onclick="validate_amount_paid(event)" class="btn btn-primary btn-lg my-3 mx-3">Pay</button>
+        <button role="close-button" onclick="hide_modal(event, 'amount-paid')" class="btn btn-danger btn-lg mx-3">Cancel</button>
+        <br>
+      </div>
     </div>
-   </div> 
-</div>        
+  </div>
+</div>
+
+
+    
          
 
 <!--end amoount modals-->
 <!--change modals-->
 
-    <div role="close-button" onclick="hide_modal(event, 'change')" class="js-change-modal hide" style="animation: appear .4s ease;background-color: #00000044; width: 100%; height: 100%; position: fixed;left:0px;top:0px;z-index: 4;">
-       
-            <div class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog" id="modalSheet">
-                <div class="modal-dialog" role="document">
-                <div class="modal-content rounded-4 shadow">
-               <div class="modal-header border-bottom-0">
-                <h4 class="modal-title fs-4">Receipt:</h4>
-                <button role="close-button" onclick="hide_modal(event,'change')" type="button" class="btn-close float-end" aria-label="Close" data-bs-dismiss="modal"></button>
-            </div>
-                <div class="modal-body py-0">
-                <div class="js-gtotal-change ms-4 mt-4" role="alert" style="font-size: 25px"></div>
-                <div class="js-amount-paid-input ms-4 mt-4" role="alert"style="font-size: 25px;"></div>
-                <div class="js-change-input ms-4 mt-4" role="alert"style="font-size: 25px;"></div>
-                <br>
-                <div class="modal-footer flex-column align-items-stretch w-100 gap-2 pb-3 border-top-0">
-                <button role="close-button" onclick="hide_modal(event,'change')" class="js-btn-close-change btn-primary btn-lg">Continue</button>
-            </div>
+   <div class="js-change-modal hide" style="background-color: rgba(0, 0, 0, 0.4); width: 100%; height: 100%; position: fixed; left: 0; top: 0; z-index: 4;">
+  <div class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog" id="modalSheet">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content rounded-4 shadow">
+        <div class="modal-header border-bottom-0">
+          <h4 class="modal-title fs-4">Receipt:</h4>
+          <button role="close-button" onclick="hide_modal(event, 'change')" type="button" class="btn-close float-end" aria-label="Close"></button>
         </div>
+        <div class="modal-body py-0">
+          <div class="js-gtotal-change ms-4 mt-4" style="font-size: 25px;"></div>
+          <div class="js-amount-paid-input ms-4 mt-4" style="font-size: 25px;"></div>
+          <div class="js-change-input ms-4 mt-4" style="font-size: 25px;"></div>
+          <br>
+          <div class="modal-footer flex-column align-items-stretch w-100 gap-2 pb-3 border-top-0">
+            <button role="close-button" onclick="hide_modal(event, 'change')" class="js-btn-close-change btn-primary btn-lg">Continue</button>
+          </div>
         </div>
-        </div>
+      </div>
     </div>
-    </div>
+  </div>
+</div>
+
 
 <!--end change modals-->
 
@@ -135,6 +153,7 @@
     var ITEMS    = [];
     var BARCODE  = false;
     var GTOTAL   = 0;
+    var STOTAL   = 0;
     var CHANGE   = 0;
     var AMOUNT   = 0;
     var receipt_window = null;
@@ -226,16 +245,16 @@
 
         return `
             <!--card-->
-            <div class="card m-2 border-0" style="min-width: 150px;max-width: 150px;">
-                <a href="#">
-                    <img index="${index}" src="${data.image}" class="w-100 rounded border">
-                </a>
-                <div class="p-2">
-                    <div class="text-muted">${data.description}</div>
-                    <div class="" style="font-size:20px"><b>₱${data.amount}</b></div>
-                </div>
-            </div>
-            <!--end card-->
+<div class="card m-2 border border-dark rounded" style="min-width: 150px; max-width: 150px;">
+    <a href="#">
+        <img index="${index}" src="${data.image}" class="w-100 rounded">
+    </a>
+    <div class="p-2">
+        <div class="" style="color: black; font-weight: 500">${data.description}</div>
+        <div class="" style="font-size: 20px;"><b>₱${data.amount}</b></div>
+    </div>
+</div>
+<!--end card-->
             `;  
 
                 
@@ -244,27 +263,45 @@
     {
 
         return `
-             <!--item-->
-                <tr>
-                <td style="inline-size:110px"><Img src="${data.image}" class="rounded-border" style="inline-size:80px; block-size:80px"></td> 
-                <td class="text-dark">
-                    ${data.description}
-                    <div class="input-group my-3" style="max-inline-size:150px">
-                        <button index="${index}" onclick="change_qty('down',event)" class="btn btn-outline-primary" type="submit"><i class="fa fa-minus"></i></button>
-                        <input index="${index}" onblur="change_qty('input',event)" type="text" class="border-primary form-control" placeholder="1" value="${data.qty}">
-                        <button index="${index}" onclick="change_qty('up',event)" class="btn btn-outline-primary" type="submit"><i class="fa fa-plus"></i></button>
-                        </div>
-               <td style="font-size:20px">
-                    <b>₱${data.amount}</b>
-                    <button onclick="clear_item(${index})" class="float-end btn btn-danger btn-sm"><i class="fa fa-times"></i></button>
-                </td>
-                </tr>          
-            <!--end item-->
+<!--item-->
+<tr style="border: 1px solid black; border-radius: 10px;">
+  <td style="width: 110px;">
+    <img src="${data.image}" class="rounded-border" style="width: 65px; height: 65px;">
+  </td> 
+  <td class="text-dark">
+    <div style="font-size: 18px; font-weight: 500">${data.description}</div>
+    <div class="input-group my-3">
+      <button index="${index}" onclick="change_qty('down',event)" class="btn btn-outline-primary" type="submit"><i class="fa fa-minus"></i></button>
+      <input index="${index}" onblur="change_qty('input',event)" type="text" class="border-primary form-control" placeholder="1" value="${data.qty}" oninput="validateInput(this)">
+      <button index="${index}" onclick="change_qty('up',event)" class="btn btn-outline-primary" type="submit"><i class="fa fa-plus"></i></button>
+    </div>
+  </td>
+  <td style="font-size: 20px; position: relative;">
+    <b style="display: inline-block; margin-top: 20px; font-size: 22px">₱${data.amount}</b>
+    <div style="position: absolute; top: -9px; right: -1px;">
+      <button onclick="clear_item(${index})" class="btn btn-danger btn-sm" style="padding: 0; width: 20px; height: 20px;"><i class="fa fa-times" style="font-size: 14px;"></i></button>
+    </div>
+  </td>
+</tr>
+<!--end item-->
+
+
+
+
             `;
 
                 
     }
 
+     function validateInput(input) {
+    // Remove any non-digit characters from the input value
+    input.value = input.value.replace(/\D/g, '');
+    
+    // Limit the input value to a maximum of 999
+    if (input.value > 999) {
+      input.value = 999;
+    }
+  }
 
    function add_item_from_index(index)
     {
@@ -319,6 +356,7 @@
         var gtotal_div = document.querySelector(".js-gtotal-modal");
         gtotal_div.innerHTML = "Total: ₱" + grand_total.toFixed(2);
         GTOTAL = grand_total;
+
     } 
 
     function clear_all()
@@ -522,6 +560,18 @@
         data_type:"search",
         text:""
     });
+
+    function validate_amount_paid(event) {
+  const input = event.target;
+  const value = input.value;
+
+  // Remove non-numeric characters
+  const numericValue = value.replace(/[^0-9]/g, '');
+
+  // Update the input value with the numeric value
+  input.value = numericValue;
+}
+
  
 
 </script>
