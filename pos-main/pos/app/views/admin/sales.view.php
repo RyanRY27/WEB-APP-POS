@@ -31,15 +31,15 @@
 		<div>
 			<form class="row float-end">
 				<div class="col">
-					<label for="start">Start Date:</label>
+					<div for="start">Start Date:</div>
 					<input class="form-control" id="start" type="date" name="start" value="<?=!empty($_GET['start']) ? $_GET['start']:''?>">
 				</div>
 				<div class="col">
-					<label for="end">End Date:</label>
+					<div for="end">End Date:</div>
 					<input class="form-control" id="end" type="date" name="end" value="<?=!empty($_GET['end']) ? $_GET['end']:''?>">
 				</div>
 				<div class="col">
-					<label for="limit">Rows:</label>
+					<div for="limit">Rows:</div>
 					<input style="max-width: 130px" class="form-control" id="limit" type="number" min="1" name="limit" value="<?=!empty($_GET['limit']) ? $_GET['limit']: $limit?>">
 				</div>
 				<button style="max-height:38px" class="btn col btn-outline-primary me-4 mt-4"><i class="fa fa-chevron-right"></i></button>
