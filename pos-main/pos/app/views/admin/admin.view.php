@@ -5,10 +5,7 @@
     <div class="finjnal_1"></div>
     <div class="business">RMM's <br/> Ihaw-Ihaw Business</div>
     <h1 class="title">ADMIN</h1>
-    <div class="group9">
-      <div class="user_pfp"></div>
-      <div class="user_label inter-black">User</div>
-    </div>
+    
     <div class="menu">
       <a href="index.php?page=admin&tab=dashboard" class="menu-item <?=!$tab || $tab == 'dashboard'?'highlight':''?>"><i class="fa-solid fa-chart-line ms-2 me-2" style="color: #000000;"></i>Dashboard</a>
       <a href="index.php?page=admin&tab=products" class="menu-item <?=$tab=='products'?'highlight':''?>"><i class="fa-solid fa-cart-plus ms-2 me-2" style="color: #000000;"></i>Products</a>
