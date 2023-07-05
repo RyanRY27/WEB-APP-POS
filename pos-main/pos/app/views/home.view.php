@@ -12,7 +12,6 @@
 
 
         }
-        
         .input-group {
     max-width: 120px;
   }
@@ -37,7 +36,7 @@
 
     </style>
 
-    <div class="d-flex rounded" style="background-color: rgba(255, 224, 224, 1);" >
+      <div class="d-flex rounded" style="background-color: rgba(255, 224, 224, 1);" >
        <div style="height: 700px;" class="shadow-sm col-9 p-3">
   <div class="mb-3">
     <h2 class="text-center bg-white rounded-pill"><i class="bi bi-cart"></i> ITEMS</h2>
@@ -89,57 +88,59 @@
 <!--modals-->
 
 <!--amount modals-->
-  <div class="js-amount-paid-modal hide" style="background-color: rgba(0, 0, 0, 0.4); width: 100%; height: 100%; position: fixed; left: 0; top: 0; z-index: 4;">
-  <div class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog" id="modalSheet">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content rounded-4 shadow">
-        <div class="modal-header border-bottom-0">
-          <h4 class="modal-title fs-4"><i class="fa fa-cart-shopping"></i> Check Out</h4>
-          <button role="close-button" onclick="hide_modal(event, 'amount-paid')" type="button" class="btn-close float-end" aria-label="Close" data-bs-dismiss="modal"></button>
+     <div role="close-button" onclick="hide_modal(event, 'amount-paid')" class="js-amount-paid-modal hide" style="animation: appear .3s ease;background-color: #00000044; width: 100%; height: 100%; position: fixed;left:0px;top:0px;z-index: 4;">
+            
+           <div class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog" id="modalSheet">
+               <div class="modal-dialog" role="document">
+               <div class="modal-content rounded-4 shadow">
+                <div class="modal-header border-bottom-0">
+                    <h4 class="modal-title fs-4"><i class="fa fa-cart-shopping"></i>Check Out</h4>
+                    <button role="close-button" onclick="hide_modal(event,'amount-paid')" type="button" class="btn-close float-end" aria-label="Close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body py-0">
+                    <div class="js-gtotal-modal alert alert-danger mt-4 " role="alert" style="font-size:20px"></div>
+                    <div for="amountpaid" class="form-label" style="font-size:20px;">Amount Paid:</div>
+                    <input onkeyup="if(event.keyCode == 13)validate_amount_paid(event)" type="text" class="js-amount-paid-input form-control" placeholder="Enter Amount Paid">
+                </div>
+                <br>
+                    
+                    <button onclick="validate_amount_paid(event)" class="btn btn-primary btn-lg my-3 mx-3">Pay</button>
+                    <button role="close-button" onclick="hide_modal(event,'amount-paid')" class="btn btn-danger btn-lg mx-3">Cancel</button>
+                <br>
+              
+            </div>
+            </div>
         </div>
-        <div class="modal-body py-0">
-          <div class="js-gtotal-modal alert alert-danger mt-4" role="alert" style="font-size: 20px;"></div>
-          <div for="amountpaid" class="form-label" style="font-size: 20px;">Amount Paid:</div>
-          <input oninput="validate_amount_paid(event)" type="text" class="js-amount-paid-input form-control" placeholder="Enter Amount Paid">
-        </div>
-        <br>
-        <button onclick="validate_amount_paid(event)" class="btn btn-primary btn-lg my-3 mx-3">Pay</button>
-        <button role="close-button" onclick="hide_modal(event, 'amount-paid')" class="btn btn-danger btn-lg mx-3">Cancel</button>
-        <br>
-      </div>
     </div>
-  </div>
-</div>
-
-
-    
+   </div> 
+</div>        
          
 
 <!--end amoount modals-->
 <!--change modals-->
 
-   <div class="js-change-modal hide" style="background-color: rgba(0, 0, 0, 0.4); width: 100%; height: 100%; position: fixed; left: 0; top: 0; z-index: 4;">
-  <div class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog" id="modalSheet">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content rounded-4 shadow">
-        <div class="modal-header border-bottom-0">
-          <h4 class="modal-title fs-4">Receipt:</h4>
-          <button role="close-button" onclick="hide_modal(event, 'change')" type="button" class="btn-close float-end" aria-label="Close"></button>
+    <div role="close-button" onclick="hide_modal(event, 'change')" class="js-change-modal hide" style="animation: appear .4s ease;background-color: #00000044; width: 100%; height: 100%; position: fixed;left:0px;top:0px;z-index: 4;">
+       
+            <d iv class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog" id="modalSheet">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content rounded-4 shadow">
+               <div class="modal-header border-bottom-0">
+                <h4 class="modal-title fs-4">Receipt:</h4>
+                <button role="close-button" onclick="hide_modal(event,'change')" type="button" class="btn-close float-end" aria-label="Close" data-bs-dismiss="modal"></button>
+            </div>
+                <div class="modal-body py-0">
+                <div class="js-gtotal-change ms-4 mt-4" role="alert" style="font-size: 25px"></div>
+                <div class="js-amount-paid-input ms-4 mt-4" role="alert"style="font-size: 25px;"></div>
+                <div class="js-change-input ms-4 mt-4" role="alert"style="font-size: 25px;"></div>
+                <br>
+                <div class="modal-footer flex-column align-items-stretch w-100 gap-2 pb-3 border-top-0">
+                <button role="close-button" onclick="hide_modal(event,'change')" class="js-btn-close-change btn-primary btn-lg">Continue</button>
+            </div>
         </div>
-        <div class="modal-body py-0">
-          <div class="js-gtotal-change ms-4 mt-4" style="font-size: 25px;"></div>
-          <div class="js-amount-paid-input ms-4 mt-4" style="font-size: 25px;"></div>
-          <div class="js-change-input ms-4 mt-4" style="font-size: 25px;"></div>
-          <br>
-          <div class="modal-footer flex-column align-items-stretch w-100 gap-2 pb-3 border-top-0">
-            <button role="close-button" onclick="hide_modal(event, 'change')" class="js-btn-close-change btn-primary btn-lg">Continue</button>
-          </div>
         </div>
-      </div>
+        </div>
     </div>
-  </div>
-</div>
-
+    </div>
 
 <!--end change modals-->
 
@@ -153,7 +154,6 @@
     var ITEMS    = [];
     var BARCODE  = false;
     var GTOTAL   = 0;
-    var STOTAL   = 0;
     var CHANGE   = 0;
     var AMOUNT   = 0;
     var receipt_window = null;
@@ -244,7 +244,7 @@
     {
 
         return `
-            <!--card-->
+                    <!--card-->
 <div class="card m-2 border border-dark rounded" style="min-width: 150px; max-width: 150px;">
     <a href="#">
         <img index="${index}" src="${data.image}" class="w-100 rounded">
@@ -263,7 +263,7 @@
     {
 
         return `
-<!--item-->
+       <!--item-->
 <tr style="border: 1px solid black; border-radius: 10px;">
   <td style="width: 110px;">
     <img src="${data.image}" class="rounded-border" style="width: 65px; height: 65px;">
@@ -284,16 +284,12 @@
   </td>
 </tr>
 <!--end item-->
-
-
-
-
             `;
 
                 
     }
 
-     function validateInput(input) {
+       function validateInput(input) {
     // Remove any non-digit characters from the input value
     input.value = input.value.replace(/\D/g, '');
     
@@ -302,6 +298,7 @@
       input.value = 999;
     }
   }
+
 
    function add_item_from_index(index)
     {
@@ -356,7 +353,6 @@
         var gtotal_div = document.querySelector(".js-gtotal-modal");
         gtotal_div.innerHTML = "Total: ₱" + grand_total.toFixed(2);
         GTOTAL = grand_total;
-
     } 
 
     function clear_all()
@@ -537,6 +533,15 @@
             data_type:"search",
             text:""
         });
+
+        const input = event.target;
+  const value = input.value;
+
+  // Remove non-numeric characters
+  const numericValue = value.replace(/[^0-9]/g, '');
+
+  // Update the input value with the numeric value
+  input.value = numericValue;
     }
 
     function print_receipt(obj)
@@ -561,17 +566,7 @@
         text:""
     });
 
-    function validate_amount_paid(event) {
-  const input = event.target;
-  const value = input.value;
-
-  // Remove non-numeric characters
-  const numericValue = value.replace(/[^0-9]/g, '');
-
-  // Update the input value with the numeric value
-  input.value = numericValue;
-}
-
+    
  
 
 </script>
